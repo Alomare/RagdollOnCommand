@@ -71,3 +71,13 @@ Open questions for the live test:
 
 - 1-recon-1/1-recon-2: the key ragdolls the Helldiver and the game stands them up; calling the knockdown from the Lua update is fine. The binding name shows translated (bp: 2 of 2 texts).
 - Released as V1 (version number only changed). Still unverified: whether squadmates see a client's ragdoll.
+
+## 2-recon-1: delay after the key press (2026-10-05)
+
+- Mod Options Menu slider `alomare.ragdoll_on_command.delay` ("Delay After Key Press (Milliseconds)"): 0 to 1000 in 50 ms steps, default 0, texts as functions from Mod Options Menu version 2 (translated in every language). Without Mod Options Menu there is no delay.
+- A press with a delay sets a countdown (seconds) that the update's `dt` counts down, starting the frame after the press; at 0 the usual sequence runs (is ragdolled, can ragdoll, start), so a Helldiver that died or started climbing in the meantime is refused as before. Presses while a countdown runs are ignored.
+- Tests: 19 checks, including the 250 ms countdown at 1/64 s frames (nothing on the 15th frame after the press, the ragdoll on the 16th), the ignored second press and a change to 0 applying at once.
+
+Questions for the test: does the delay match the slider (try 0, 500 and 1000)? Does the slider show translated?
+
+Live result (2026-10-05): the delay matches the slider. Released as V2.
